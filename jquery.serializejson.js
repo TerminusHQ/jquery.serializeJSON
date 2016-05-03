@@ -255,7 +255,15 @@
         if (key === '') {
           o.push(value); // '' is used to push values into the array (assume o is an array)
         } else {
-          o[key] = value; // other keys can be used as object keys or array indexes
+          if (f.isUndefined(o[key])) {
+            o[key] = value; // other keys can be used as object keys or array indexes
+          } else {
+            if (!$.isArray(o[key])){
+              o[key] = [o[key]] // o[key] should be an array if o[key] has more than two values
+            }
+
+            o[key].push(value)
+          }
         }
 
       // With more keys is a deepSet. Apply recursively.
