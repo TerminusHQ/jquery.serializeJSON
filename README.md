@@ -31,19 +31,19 @@ HTML form (input, textarea and select tags supported):
   <input type="text" name="address[state][abbr]"  value="CA" />
 
   <!-- array -->
-  <input type="text" name="jobbies[]"             value="code" />
-  <input type="text" name="jobbies[]"             value="climbing" />
+  <input type="text" name="jobbies"             value="code" />
+  <input type="text" name="jobbies"             value="climbing" />
 
   <!-- textareas, checkboxes ... -->
-  <textarea              name="projects[0][name]">serializeJSON</textarea>
-  <textarea              name="projects[0][language]">javascript</textarea>
-  <input type="hidden"   name="projects[0][popular]" value="0" />
-  <input type="checkbox" name="projects[0][popular]" value="1" checked />
+  <textarea              name="projects[][name]">serializeJSON</textarea>
+  <textarea              name="projects[][language]">javascript</textarea>
+  <input type="checkbox" name="projects[][popular]" value="0"/>
+  <input type="checkbox" name="projects[][popular]" value="1" checked />
 
-  <textarea              name="projects[1][name]">tinytest.js</textarea>
-  <textarea              name="projects[1][language]">javascript</textarea>
-  <input type="hidden"   name="projects[1][popular]" value="0" />
-  <input type="checkbox" name="projects[1][popular]" value="1"/>
+  <textarea              name="projects[][name]">tinytest.js</textarea>
+  <textarea              name="projects[][language]">javascript</textarea>
+  <input type="checkbox" name="projects[][popular]" value="0" />
+  <input type="checkbox" name="projects[][popular]" value="1"/>
 
   <!-- select -->
   <select name="selectOne">
@@ -81,10 +81,10 @@ $('#my-profile').serializeJSON();
 
   jobbies: ["code", "climbing"],
 
-  projects: {
-    '0': { name: "serializeJSON", language: "javascript", popular: "1" },
-    '1': { name: "tinytest.js",   language: "javascript", popular: "0" }
-  },
+  projects: [
+    { name: "serializeJSON", language: "javascript", popular: "1" },
+    { name: "tinytest.js",   language: "javascript", popular: "0" }
+  ],
 
   selectOne: "rock",
   selectMultiple: ["red", "blue"]
@@ -177,11 +177,11 @@ $('form').serializeJSON();
   },
   "array": { // <-- works using JSON.parse
     "empty": [],
-    "not empty": [1,2,3]
+    "list": [1,2,3]
   },
   "object": { // <-- works using JSON.parse
     "empty": {},
-    "not empty": {"my": "stuff"}
+    "dict": {"my": "stuff"}
   }
 }
 ```
